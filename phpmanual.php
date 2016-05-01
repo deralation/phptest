@@ -4,4 +4,15 @@ echo "Why don't you type in your name for me:\n";
 $name = trim(fgets(STDIN));
 
 echo "\nThanks, " . $name . ", it's really nice to meet you.\n\n";
+
+	$numberSix = 6;
+	$thisIsMyName = "Breet";
+	$carMake = "Honda";
+
+	$firstname = $_REQUEST("firstname");
+	$lastname = $_REQUEST("lastname");
+	$email = $_REQUEST("email");
+	$facebookurl = $_REQUEST("facebook_url");
+	$twitter = $_REQUEST("twwitter");
+
 ?>
