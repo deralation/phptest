@@ -1,8 +1,20 @@
 <?php 
-	$firstname = $_REQUEST["first_name"];
-	$lastname = $_REQUEST["last_name"];
-	$email = $_REQUEST["email"];
-	$facebook = $_REQUEST["facebook_url"];
+	
+ 	$file_cabinet["firstname"] = "Derek";
+	$file_cabinet["lastname"] = "Trucks";
+	$file_cabinet["email"] = "derek@derektrucks.com";
+	$file_cabinet["facebook"] = "http://www.facebook.com/DerekTrucks";
+	$file_cabinet["twitter"] = "@derekandsusan";
+
+
+	$firstname = $file_cabinet["firstname"] ;
+	//$firstname = trim($_REQUEST["first_name"]);
+	$lastname = $file_cabinet["lastname"] ;
+ 	//$lastname = trim($_REQUEST["last_name"]);
+	$email = $file_cabinet["email"] ;
+	//$email = trim($_REQUEST["email"]);
+	$facebook = $file_cabinet["facebook"];
+	//$facebook = str_replace("facebook.org","facebook.com",trim($_REQUEST["facebook_url"]));
 	$position = strpos($facebook, "facebook.com");
 	/*if($position==false) {
 		$facebook = "https://www.facebook.com/". $facebook;
@@ -12,7 +24,8 @@
 		$facebook = "http://www.facebook.com/".$facebook;
 	}
 	//echo var_dump($position); exit();
-	$twitter = $_REQUEST["twitter_handle"];
+	$twitter = $file_cabinet["twitter"];
+	//$twitter = trim($_REQUEST["twitter_handle"]);
 	$twitter_url = "http://www.twitter.com/";
 	$position = strpos($twitter, '@');
 	if($position===false){
