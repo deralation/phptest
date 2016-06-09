@@ -5,6 +5,7 @@
 	$first_name = trim($_REQUEST['first_name']);
 	$last_name = trim($_REQUEST['last_name']);
 	$email = trim($_REQUEST['email']);
+	$bio = trim($_REQUEST['bio']);
 	$facebook_url = str_replace("facebook.org","facebook.com",trim($_REQUEST['facebook_url']));
 	$position = strpos($facebook_url,"facebook.com");
 
@@ -23,12 +24,12 @@
 	
 	// Handle User Request
 
-	$insert_sql = "INSERT INTO users (first_name,last_name, "."email,facebook_url,twitter_handle) "."VALUES ('{$first_name}','{$last_name}','{$email}',"."'{$facebook_url}','{$twitter_handle}');";
+	$insert_sql = "INSERT INTO users (first_name, last_name, email, bio ".", facebook_url, twitter_handle) "."VALUES ('{$first_name}','{$last_name}','{$email}','{$bio}'"."'{$facebook_url}','{$twitter_handle}');";
 
 	// ınsert the user into the database
 	
 	mysqli_query($gokhan, $insert_sql)
 		or die(mysql_error());
-
-	//  Display 
+	
+	// load this ınformation and ready it for display in the html output
  ?>
