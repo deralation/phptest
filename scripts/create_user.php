@@ -24,7 +24,7 @@
 	
 	// Handle User Request
 
-	$insert_sql = "INSERT INTO users (first_name, last_name, email, bio ".", facebook_url, twitter_handle) "."VALUES ('{$first_name}','{$last_name}','{$email}','{$bio}'"."'{$facebook_url}','{$twitter_handle}');";
+	$insert_sql = "INSERT INTO users (first_name, last_name, email, bio ".", facebook_url, twitter_handle) "."VALUES ('{$first_name}','{$last_name}','{$email}','{$bio}',"."'{$facebook_url}','{$twitter_handle}');";
 
 	// ınsert the user into the database
 	
@@ -32,4 +32,6 @@
 		or die(mysql_error());
 	
 	// load this ınformation and ready it for display in the html output
- ?>
+	header("Location: show_user.php?user_id=" . mysql_insert_id());
+	exit();
+?>
