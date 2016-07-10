@@ -96,7 +96,77 @@ echo $y;
    echo "c: ". FALSE . "<br>";
    echo "d: ". $myname . "<br>";
    echo "e: ". $myage . "<br>";
-
-
-
     ?>
+    <br>
+    <?php 
+    $day_number = 360;
+    $days_to_new_year = 366-$day_number;
+
+    if($days_to_new_year<30){
+    	echo "Not long now till new year";
+    }
+    ?>
+    <br>
+    <?php 
+    $month = "march";
+
+    if($month == "march") echo "it is spring time";
+     ?>
+     <br>
+     <?php 
+     $a = "10000";
+     $b = "+10000";
+
+     if($a==$b) echo "1";
+     if($a===$b) echo "2";
+
+     if($a != $b) echo "1";
+     if($a !== $b) echo "2";
+     ?>
+     <br>
+     <?php 
+     $a = 2; $b = 3;
+     if($a>$b) echo "$a is greater than $b<br>";
+     if($a<$b) echo "$a is less than $b<br>";
+     if($a >= $b) echo "$a is greater than or equal to $b<br>";
+     if($a <= $b) echo "$a is less than or equal to $b<br>";
+      ?>
+      <br>
+      <?php 
+      $a = 1;
+      $b = 0;
+
+      echo ($a AND $b). "<br>";
+      echo ($a or $b). "<br>";
+      echo ($a xor $b). "<br>";
+      echo !$a. "<br>";
+       ?>
+       <br>
+       <?php 
+
+       //$gn = getnext();
+       $finished = 0;
+
+       //if($finished == 1 OR $gn == 1) exit;
+        ?>
+        <br>
+        <?php
+        $page = "Home"; 
+        switch($page){
+        	case "Home":
+        		echo "You slected Home";
+        		break;
+        	case "About":
+        		echo "You selected About";
+        		break;
+        	case "News":
+        		echo "You selected News";
+        		break;
+        	case "Login":
+        		echo "You selected Login";
+        		break;
+        	case "Links":
+        		echo "You selected Links";
+        		break;
+        }
+        ?>
