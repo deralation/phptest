@@ -27,4 +27,32 @@ $products  = array(
 	}
 	echo '<pre>';
 
+	echo $products['misc']['glue'];
+?>
+<br>
+<?php  
+$chessboard = array(
+	array('r','n','b','q','k','b','n','r'),
+	array('p','p','p','p','p','p','p','p'),
+	array('','','','','','','',''),
+	array('','','','','','','',''),
+	array('','','','','','','',''),
+	array('','','','','','','',''),
+	array('P','P','P','P','P','P','P','P'),
+	array('R','N','B','Q','K','B','N','R'),
+);
+	echo "<pre>";
+
+	foreach ($chessboard as $row) {
+		foreach ($row as $piece)
+			echo $piece;
+			echo "<br>";
+	}
+	echo '<pre>';
+	echo $chessboard[7][3]
+?>
+<br>
+<?php  
+$fred = array();
+echo (is_array($fred))? "Is an array":"Is not an array";
 ?>
