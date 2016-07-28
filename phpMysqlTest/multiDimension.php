@@ -53,6 +53,29 @@ $chessboard = array(
 ?>
 <br>
 <?php  
-$fred = array();
+$fred = array("a","b","c","d","e","f","g","k");
 echo (is_array($fred))? "Is an array":"Is not an array";
+echo '<pre>';
+echo count($fred);
+echo count($fred, 1);
+print sort($fred);
+print sort($fred, SORT_NUMERIC);
+print sort($fred, SORT_STRING);	 
+print rsort($fred, SORT_NUMERIC);
+print rsort($fred, SORT_STRING);
+?>
+<br>
+<?php  
+$cards = array("1","2","3","4","5");
+var_dump(shuffle($cards));
+?>
+<br>
+<?php  
+$temp = explode(" ","This is a sentence with seven words");
+print_r($temp);
+?>
+<br>
+<?php  
+$temp = explode('***','A***sentence***with***asteriks');
+print_r($temp);
 ?>
