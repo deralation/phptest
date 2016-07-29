@@ -79,3 +79,36 @@ print_r($temp);
 $temp = explode('***','A***sentence***with***asteriks');
 print_r($temp);
 ?>
+<br>
+<?php  
+extract($_GET, EXTR_PREFIX_ALL,'fromget');
+?>
+<br>
+<?php 
+$fname = "Doctor";
+$sname = "Who";
+$planet = "Gallifrey";
+$system = "Gridlock";
+$constellation = "Kasterbous";
+
+$contact = compact('fname','sname','planet','system','constellation');
+
+print_r($contact);
+?>
+<br>
+<?php  
+$j = 23;
+$temp = "Hello";
+$address = "1 old street";
+$age = 61;	
+
+print_r(compact(explode(' ', 'j temp address age')));	
+?>
+<br>
+<?php  
+reset($fred);
+return value;
+$item = reset($fred);
+end($fred);
+$item = end($fred);
+?>
