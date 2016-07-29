@@ -1,4 +1,20 @@
-<?php  
+<?php // exec.php
+
+$cmd = "ls";  
+
+exec(escapeshellcmd($cmd), $output, $status);
+
+if($status){
+	echo "Exec command failed";
+}else{
+	echo "<pre>";
+	foreach ($output as $line) {
+		echo htmlspecialchars("$line\n");
+		echo "</pre>";
+	}
+}
+
+
 
 $r = 44;
 $g = 70;
@@ -129,4 +145,191 @@ _END;
 fwrite($fh, $text) or die("Could not write to file");
 fclose($fh);
 echo "File 'testfile.txt' written succesfully";
+echo '<pre>';
+echo file_get_contents('testfile.txt');
+?>
+<br>
+<?php  
+echo "Reading From files";
+echo '<pre>';
+$fg = fopen("testfile.txt",'r') or die("File does not exist or you lack permission to open it");
+
+$line = fgets($fg);
+fclose($fg);
+echo $line;
+echo file_get_contents('testfile.txt');
+
+$fh = fopen("testfile.txt",'r') or die("File does not exist or you lack permission to open it");
+$message = fread($fh,3);
+fclose($fh);
+echo $message;
+echo file_get_contents('testfile.txt');
+?>
+<br>
+<?php 
+echo "Copy file";
+echo '<pre>';
+
+copy('testfile.txt','testfile2.txt') or die("Could not copy file");
+echo "File succesfully copied to 'testfile2.txt'";
+echo "<pre>";
+echo file_get_contents('testfile.txt');
+echo "<pre>";
+echo file_get_contents('testfile2.txt');
+echo "<pre>";
+if(!copy('testfile.txt','testfile2.txt')) echo "Could not copy file";
+else echo "File succesfully copied to testfile2.txt";
+?>
+<br>
+<?php  
+echo "Moving a file";
+echo '<pre>';
+
+if(!rename('testfile2.txt','testfile2.new'))
+	echo "Could not rename file";
+else echo "File succesfully renamed to 'testfile2.new";
+?>
+<br>
+<?php  
+echo 'deleting a file';
+echo "<pre>";
+
+if(!unlink("testfile2.new"))
+	echo "Could not delete file";
+else 
+	echo "File 'testfile2.new' succesfully deleted";
+echo "<pre>";
+echo file_get_contents('testfile.txt');
+?>
+<br>
+<?php  
+echo "Updating File";
+echo "<pre>";
+
+$fp = fopen("testfile.txt",'r+')or die("Failed to open file");
+$p  = fgets($fp);
+
+fseek($fp,0,SEEK_END);
+fwrite($fp,"$p") or die("Could not write to file");
+fclose($fp);
+echo "<pre>";
+echo "File 'testfile.txt' succesfully updated" ;
+echo "<pre>";
+echo file_get_contents('testfile.txt');
+?>
+<br>
+<?php  
+echo "Locking files for multiple accesses";
+echo "<pre>";
+
+echo "Updating a file with file locking";
+echo '<pre>';
+$fs = fopen("testfile.txt",'r+')or die("Failed to open file");
+$s = fgets($fs);
+
+if(flock($fs, LOCK_EX)){
+	fseek($fs,0,SEEK_END);
+	fwrite($fs,"$s") or die("Could not write to file");
+	flock($fs, LOCK_UN);
+}
+
+fclose($fs);
+echo "File 'testfile.txt' succesfully updated";
+echo "<pre>";
+echo file_get_contents('testfile.txt');
+?>
+<br>
+<?php 
+echo file_get_contents('testfile.txt');
+echo "<pre>";
+?>
+<?php  
+echo "Grabbing home page the O'reilly home page";
+//echo file_get_contents("https://oreilly.com");
+?>
+<br>
+<?php  
+echo "Uploading files";
+echo <<<_END
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PHP FORM UPLOAD</title>
+</head>
+<body>
+<form method='post' action='upload.php' enctype='multipart/form-data'>
+select file:<input type='file' name='filename' size:'10'>
+<input type='submit' value='Upload'>
+</form>
+_END;
+
+if($_FILES)
+{
+	$name = $_FILES['filename']['name'];
+
+	move_uploaded_file($_FILES['filename']['tmp_name'], $name);
+	echo "Upload image'$name'<br><img src='$name'>";
+
+	var_dump($_FILES);
+}
+echo "</body></html>";
+?>
+<br>
+<?php  
+echo "Validation";
+echo '<pre>';
+echo <<<_END
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PHP FORM UPLOAD</title>
+</head>
+<body>
+<form method='post' action='upload2.php' enctype='multipart/form-data'>
+select a Jpeg, GIF, PNG or TIF :<input type='file' name='filename' size:'10'>
+<input type='submit' value='Upload'>
+</form>
+_END;
+
+if($_FILES)
+{
+	$name = $_FILES['filename']['name'];
+
+	switch ($_FILES['filename']['type']) 
+	{
+		case 'image/jpeg': $ext = 'jpg';
+			break;
+		case 'image/gif': $ext = 'gif';
+			break;
+		case 'image/png': $ext = 'png';
+			break;
+		case 'image/tiff': $ext = 'tif';
+			break;
+		default: $ext = '';
+			break;
+	}
+	if($ext)
+	{
+		$n = "image.$ext";
+		move_uploaded_file($_FILES['filename']['tmp_name'], $n);
+		echo "Upload image'$name'<br><img src='$n'>";
+		echo "<img src='$n'>";
+	}
+	else echo "$name is not am accepted image file";
+}
+else echo "No image has been uploaded";
+echo "</body></html>";
+
+
+//$name = preg_replace("/[^A-Za-z0-9.]/", "",$name);
+
+//$name = strtolower(ereg_replace("[Â-Za-z0-9.]", "",$name));
+?>
+<br>
+<?php  
+echo "System Calls";
+
+
+
+
 ?>
