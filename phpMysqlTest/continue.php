@@ -21,6 +21,4 @@ function destroy_session_and_data(){
   session_destroy();
 }
 
-
-
 ?>
